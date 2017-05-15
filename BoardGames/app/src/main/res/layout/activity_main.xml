@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.hugomartinet.boardgames.MainActivity">
+    tools:context="com.example.hugomartinet.boardgames.MainActivity"
+    android:background="@drawable/blackboard">
 
     <TextView
+        android:id="@+id/title1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Board\nGames"
         android:textAlignment="center"
-        android:textSize="40dp"
+        android:textSize="60dp"
+        android:textColor="#FFFFFF"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="140dp" />
+        android:layout_marginTop="60dp" />
 
 </RelativeLayout>
