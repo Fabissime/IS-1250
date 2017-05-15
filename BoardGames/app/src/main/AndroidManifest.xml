@@ -16,7 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityTicTacToe"></activity>
+        <activity android:name=".ActivityTicTacToe" />
+        <activity android:name=".ActivityFourInARow" />
+        <activity android:name=".ActivityChess" />
+        <activity android:name=".ActivityDots" />
+        <activity android:name=".ActivityCheckers"></activity>
     </application>
 
 </manifest>
