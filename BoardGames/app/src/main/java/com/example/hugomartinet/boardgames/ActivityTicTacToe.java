@@ -1,5 +1,6 @@
 package com.example.hugomartinet.boardgames;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,14 @@ public class ActivityTicTacToe extends AppCompatActivity {
         TextView tx = (TextView) findViewById(R.id.titleTicTacToe);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/introinline.otf");
         tx.setTypeface(custom_font);
+
+        Button startButton = (Button)findViewById(R.id.buttonStart);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ActivityTicTacToe.this, ActivityGameTicTacToe.class));
+            }
+        });
     }
 
     public void onClick1(View view){

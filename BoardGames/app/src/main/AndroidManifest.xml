@@ -20,7 +20,8 @@
         <activity android:name=".ActivityFourInARow" />
         <activity android:name=".ActivityChess" />
         <activity android:name=".ActivityDots" />
-        <activity android:name=".ActivityCheckers"></activity>
+        <activity android:name=".ActivityCheckers" />
+        <activity android:name=".ActivityGameTicTacToe"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,10 @@
 package com.example.hugomartinet.boardgames;
 
+import android.support.annotation.NonNull;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * Created by hugomartinet on 15/05/2017.
  */
@@ -8,20 +13,16 @@ public class TicTacToeGame {
     private int numberOfPlayers;
     private int nextPlayer;
     private int[][] grid;
+    private int computerLevel;
     private boolean isFinished;
     private int winner;
 
-    public TicTacToeGame(int numberOfPlayers){
-        this.numberOfPlayers = numberOfPlayers;
-        this.nextPlayer = 1;
-        this.grid = new int[3][3];
-        this.isFinished = false;
-    }
 
-    public TicTacToeGame(int numberOfPlayers, int nextPlayer){
+    public TicTacToeGame(int numberOfPlayers, int nextPlayer, int computerLevel){
         this.numberOfPlayers = numberOfPlayers;
         this.nextPlayer = nextPlayer;
         this.grid = new int[3][3];
+        this.computerLevel = computerLevel;
         this.isFinished = false;
     }
 
@@ -29,47 +30,114 @@ public class TicTacToeGame {
         this.numberOfPlayers = nb;
     }
 
-    public void changeNextPlayer(int nb){
+    public void changeNextPlayer(){
         this.nextPlayer = (this.nextPlayer)%2 + 1;
     }
 
-    private boolean check(int playerNb){
+    private boolean check(int[][] currentGrid, int playerNb){
         boolean win = false;
-        if (this.grid[1][1] == playerNb){
-            if (this.grid[0][1] == playerNb && this.grid[2][1] == playerNb){
+        if (currentGrid[1][1] == playerNb){
+            if (currentGrid[0][1] == playerNb && currentGrid[2][1] == playerNb){
                 win = true;
             }
-            else if (this.grid[0][0] == playerNb && this.grid[2][2] == playerNb){
+            else if (currentGrid[0][0] == playerNb && currentGrid[2][2] == playerNb){
                 win = true;
             }
-            else if (this.grid[2][0] == playerNb && this.grid[0][2] == playerNb){
+            else if (currentGrid[2][0] == playerNb && currentGrid[0][2] == playerNb){
                 win = true;
             }
-            else if (this.grid[1][0] == playerNb && this.grid[1][2] == playerNb){
+            else if (currentGrid[1][0] == playerNb && currentGrid[1][2] == playerNb){
                 win = true;
             }
         } else {
-            if (this.grid[0][0] == playerNb && this.grid[0][1] == playerNb && this.grid[0][2] == playerNb) {
+            if (currentGrid[0][0] == playerNb && currentGrid[0][1] == playerNb && currentGrid[0][2] == playerNb) {
                     win = true;
-            } else if (this.grid[0][0] == playerNb && this.grid[1][0] == playerNb && this.grid[2][0] == playerNb) {
+            } else if (currentGrid[0][0] == playerNb && currentGrid[1][0] == playerNb && currentGrid[2][0] == playerNb) {
                     win = true;
-            } else if (this.grid[2][0] == playerNb && this.grid[2][1] == playerNb && this.grid[2][2] == playerNb) {
+            } else if (currentGrid[2][0] == playerNb && currentGrid[2][1] == playerNb && currentGrid[2][2] == playerNb) {
                     win = true;
-            } else if (this.grid[0][2] == playerNb && this.grid[1][2] == playerNb && this.grid[2][2] == playerNb) {
+            } else if (currentGrid[0][2] == playerNb && currentGrid[1][2] == playerNb && currentGrid[2][2] == playerNb) {
                     win = true;
             }
         }
         return win;
     }
 
+    public boolean isWinningMove(int[][] currentGrid, int playerNb, int row, int col) {
+        int[][] myCopy = currentGrid.clone();
+        myCopy[row][col] = playerNb;
+        return check(myCopy,playerNb);
+    }
+
+
+    public int[] winningPossibility(int[][] currentGrid, int playerNb, ArrayList<int[]> available) {
+        for (int i = 0; i < available.size(); i++){
+            if (isWinningMove(currentGrid, playerNb, available.get(i)[0], available.get(i)[1])){
+                return available.get(i);
+            }
+        }
+        return null;
+    }
+
+
+    public void computerMove() {
+
+        ArrayList<int[]> available = new ArrayList<int[]>();
+        for (int row = 0; row < 3; row++){
+            for (int col = 0; col < 3; col++){
+                if (this.grid[row][col] == 0){
+                    available.add(new int[] {row,col});
+                }
+            }
+        }
+
+        int[] choice = null;
+
+        if (this.computerLevel == 1) {
+            Collections.shuffle(available);
+            choice = available.get(0);
+        }
+
+        else if (this.computerLevel == 2){
+            for(int i = 0; i < available.size();i++){
+                choice = available.get(i);
+                if(isWinningMove(this.grid, 2,choice[0],choice[1])){ break;}
+            }
+            choice = winningPossibility(this.grid, 1,available);
+            if (choice == null){
+                Collections.shuffle(available);
+                choice = available.get(0);
+            }
+        }
+
+        else {
+            for(int i = 0; i < available.size();i++){
+                choice = available.get(i);
+                if(isWinningMove(this.grid, 2,choice[0],choice[1])){ break;}
+            }
+            choice = winningPossibility(this.grid, 1,available);
+            if (choice == null){
+                for (int i = 0; i < available.size(); i++){
+                    int[][] myCopy = this.grid.clone();
+                    myCopy[available.get(i)[0]][available.get(i)[1]] = 2;
+                    ArrayList<int[]> availableCopy = (ArrayList<int[]>) available.clone();
+                    if (winningPossibility(myCopy, 1,availableCopy) == null){
+                        choice = available.get(i);
+                        break;
+                    }
+                }
+            }
+        }
+        this.grid[choice[0]][choice[1]] = 2;
+
+    }
+
     public void move(int player, int row, int col){
         this.grid[row][col] = player;
-        if (check(1)) {
+        if (check(this.grid,player)) {
             this.isFinished = true;
-            this.winner = 1;
-        } else if (check(2)) {
-            this.isFinished = true;
-            this.winner = 2;
+            this.winner = player;
         }
+        changeNextPlayer();
     }
 }
