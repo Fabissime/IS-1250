@@ -18,6 +18,111 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/titleTicTacToeGame"
+        android:layout_marginTop="20dp"
+        android:id="@+id/linearLayout2">
 
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/chalkline1"
+            android:layout_marginRight="100dp"/>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/chalkline2"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/chalkline3"
+        android:layout_alignTop="@id/linearLayout2"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/chalkline4"
+        android:layout_below="@+id/imageView3"
+        android:layout_marginTop="90dp"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp">
+
+        <TextView
+            android:id="@+id/player1"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/score1"
+            android:textSize="23dp"
+            android:textColor="#FFFFFF"
+            android:gravity="right"
+            android:text="Player1" />
+
+
+        <TextView
+            android:id="@+id/score1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/tiret"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="20dp"
+            android:textSize="40dp"
+            android:text="0"
+            android:textColor="#FFFFFF" />
+
+
+        <TextView
+            android:id="@+id/tiret"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="-"
+            android:textColor="#FFFFFF"
+            android:textSize="35dp" />
+
+        <TextView
+            android:id="@+id/score2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_toRightOf="@+id/tiret"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="25dp"
+            android:textSize="40dp"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/player2"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/score2"
+            android:text="Player2"
+            android:textColor="#FFFFFF"
+            android:textSize="23dp" />
+
+
+    </LinearLayout>
 
 </RelativeLayout>
