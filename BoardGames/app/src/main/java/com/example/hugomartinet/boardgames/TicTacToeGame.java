@@ -14,7 +14,7 @@ public class TicTacToeGame {
     private int nextPlayer;
     private int[][] grid;
     private int computerLevel;
-    private boolean isFinished;
+    public boolean isFinished;
     private int winner;
 
 
@@ -63,7 +63,7 @@ public class TicTacToeGame {
         return win;
     }
 
-    public boolean isWinningMove(int[][] currentGrid, int playerNb, int row, int col) {
+    private boolean isWinningMove(int[][] currentGrid, int playerNb, int row, int col) {
         int[][] myCopy = currentGrid.clone();
         myCopy[row][col] = playerNb;
         return check(myCopy,playerNb);
@@ -72,7 +72,7 @@ public class TicTacToeGame {
 
     public int[] winningPossibility(int[][] currentGrid, int playerNb, ArrayList<int[]> available) {
         for (int i = 0; i < available.size(); i++){
-            if (isWinningMove(currentGrid, playerNb, available.get(i)[0], available.get(i)[1])){
+            if (this.isWinningMove(currentGrid, playerNb, available.get(i)[0], available.get(i)[1])){
                 return available.get(i);
             }
         }
@@ -101,7 +101,7 @@ public class TicTacToeGame {
         else if (this.computerLevel == 2){
             for(int i = 0; i < available.size();i++){
                 choice = available.get(i);
-                if(isWinningMove(this.grid, 2,choice[0],choice[1])){ break;}
+                if(this.isWinningMove(this.grid, 2,choice[0],choice[1])){ break;}
             }
             choice = winningPossibility(this.grid, 1,available);
             if (choice == null){
@@ -113,7 +113,7 @@ public class TicTacToeGame {
         else {
             for(int i = 0; i < available.size();i++){
                 choice = available.get(i);
-                if(isWinningMove(this.grid, 2,choice[0],choice[1])){ break;}
+                if(this.isWinningMove(this.grid, 2,choice[0],choice[1])){ break;}
             }
             choice = winningPossibility(this.grid, 1,available);
             if (choice == null){
