@@ -29,34 +29,91 @@
         android:layout_below="@+id/titleTicTacToeGame"
         android:layout_marginTop="20dp">
 
-        <ImageView
-            android:layout_row="1"
-            android:layout_column="0"
-            android:id="@+id/imageView9"
+        <Button
+            android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/crossttt" />
-
-        <ImageView
             android:layout_row="0"
             android:layout_column="0"
-            android:id="@+id/imageView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/circlettt" />
+            android:background="@drawable/empty"
+            android:onClick="clickButton1"/>
 
-        <ImageView
-            android:id="@+id/imageView11"
+        <Button
+            android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_row="0"
             android:layout_column="1"
+            android:background="@drawable/empty"
+            android:onClick="clickButton2"/>
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:background="@drawable/empty"
+            android:onClick="clickButton3"/>
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:background="@drawable/empty"
+            android:onClick="clickButton4"/>
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:background="@drawable/empty"
+            android:onClick="clickButton5"/>
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:background="@drawable/empty"
+            android:onClick="clickButton6"/>
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_row="2"
-            app:srcCompat="@drawable/crossttt" />
+            android:layout_column="0"
+            android:background="@drawable/empty"
+            android:onClick="clickButton7"/>
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:background="@drawable/empty"
+            android:onClick="clickButton8"/>
+
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:layout_column="2"
+            android:background="@drawable/empty"
+            android:onClick="clickButton9"/>
 
     </GridLayout>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/line1"
         android:layout_alignTop="@+id/gridLayout"
         android:layout_alignStart="@+id/gridLayout"
         android:layout_marginLeft="96dp"
@@ -67,29 +124,29 @@
 
 
     <ImageView
+        android:id="@+id/line2"
         android:layout_alignTop="@+id/gridLayout"
         android:layout_alignEnd="@+id/gridLayout"
         android:layout_marginRight="96dp"
-        android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/chalkline2"/>
 
 
     <ImageView
+        android:id="@+id/line3"
         android:layout_alignTop="@+id/gridLayout"
         android:layout_alignStart="@+id/gridLayout"
         android:layout_marginTop="96dp"
-        android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/chalkline3"/>
 
     <ImageView
+        android:id="@+id/line4"
         android:layout_alignStart="@+id/gridLayout"
         android:layout_alignBottom="@+id/gridLayout"
         android:layout_marginBottom="96dp"
-        android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/chalkline4"/>
@@ -105,7 +162,7 @@
         android:layout_marginTop="39dp">
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/crosspl1"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="10dp"
@@ -164,7 +221,7 @@
             android:textSize="23dp" />
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/circlepl2"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
@@ -172,6 +229,23 @@
 
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/underlinepl1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/underline"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignEnd="@+id/line1" />
+
+    <ImageView
+        android:id="@+id/underlinepl2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/underline"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignStart="@+id/line2"
+        android:visibility="invisible"/>
 
 
 
