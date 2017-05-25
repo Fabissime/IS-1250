@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 public class ActivityTicTacToe extends AppCompatActivity {
 
-    private int computerLvl = 0;
+    private int computerLvl = 1;
     private int numberOfPlayers = 2;
 
     @Override
