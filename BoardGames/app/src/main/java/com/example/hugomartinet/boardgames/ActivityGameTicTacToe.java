@@ -4,27 +4,27 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.media.Image;
-import android.support.v7.app.ActionBar;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-public class ActivityGameTicTacToe extends AppCompatActivity {
+import java.util.Arrays;
+import java.util.logging.LogRecord;
+
+public class ActivityGameTicTacToe extends AppCompatActivity implements View.OnClickListener {
 
     private int currentPlayer;
     private TicTacToeGame myGame = new TicTacToeGame();
     private String name1;
     private String name2;
+    private Integer[] buttons = {R.id.button1,R.id.button2,R.id.button3,R.id.button4,R.id.button5,R.id.button6,R.id.button7,R.id.button8,R.id.button9};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +42,13 @@ public class ActivityGameTicTacToe extends AppCompatActivity {
         s1.setTypeface(custom_font2);
         s2.setTypeface(custom_font2);
 
-        System.out.println("OK");
-
         Intent iin = getIntent();
         Bundle b = iin.getExtras();
 
         this.name1 = (String) b.get("namePlayer1");
         this.name2 = (String) b.get("namePlayer2");
         int nbOfPlayers = (int) b.get("numberOfPlayers");
-        Integer computerLvl = (Integer) b.get("computerLvl");
+        int computerLvl = (int) b.get("computerLvl");
 
 
         if (this.name1 != "") {
@@ -64,279 +62,20 @@ public class ActivityGameTicTacToe extends AppCompatActivity {
         }
 
         this.myGame.setNumberOfPlayers(nbOfPlayers);
-        this.myGame.setNextPlayer(1);
         this.myGame.setComputerLevel(computerLvl);
         this.myGame.starter = 1;
 
         this.currentPlayer = 1;
 
-    }
 
-    public void clickButton1(View view){
-        Button but = (Button)findViewById(R.id.button1);
-        if (this.currentPlayer == 1) {
-            but.setBackgroundResource(R.drawable.crossttt);
-        }
-        else {
-            but.setBackgroundResource(R.drawable.circlettt);
-        }
-
-        this.myGame.move(this.currentPlayer,0,0);
-
-        if(this.myGame.isFinished) {
-            throwAlert(view);
-        }
-
-        this.currentPlayer = (this.currentPlayer)%2 + 1;
-        but.setEnabled(false);
-
-        ImageView underline1 = (ImageView)findViewById(R.id.underlinepl1);
-        ImageView underline2 = (ImageView)findViewById(R.id.underlinepl2);
-        if (underline1.getVisibility() == View.VISIBLE){
-            underline1.setVisibility(View.INVISIBLE);
-            underline2.setVisibility(View.VISIBLE);
-        }
-        else {
-            underline1.setVisibility(View.VISIBLE);
-            underline2.setVisibility(View.INVISIBLE);
+        for(int i: buttons){
+            Button but = (Button)findViewById(i);
+            but.setOnClickListener(this);
         }
     }
 
-    public void clickButton2(View view){
-        Button but = (Button)findViewById(R.id.button2);
-        if (this.currentPlayer == 1) {
-            but.setBackgroundResource(R.drawable.crossttt);
-        }
-        else {
-            but.setBackgroundResource(R.drawable.circlettt);
-        }
-
-        this.myGame.move(this.currentPlayer,0,1);
-
-        if(this.myGame.isFinished) {
-            throwAlert(view);
-        }
-
-        this.currentPlayer = (this.currentPlayer)%2 + 1;
-        but.setEnabled(false);
-        ImageView underline1 = (ImageView)findViewById(R.id.underlinepl1);
-        ImageView underline2 = (ImageView)findViewById(R.id.underlinepl2);
-        if (underline1.getVisibility() == View.VISIBLE){
-            underline1.setVisibility(View.INVISIBLE);
-            underline2.setVisibility(View.VISIBLE);
-        }
-        else {
-            underline1.setVisibility(View.VISIBLE);
-            underline2.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    public void clickButton3(View view){
-        Button but = (Button)findViewById(R.id.button3);
-        if (this.currentPlayer == 1) {
-            but.setBackgroundResource(R.drawable.crossttt);
-        }
-        else {
-            but.setBackgroundResource(R.drawable.circlettt);
-        }
-
-        this.myGame.move(this.currentPlayer,0,2);
-
-        if(this.myGame.isFinished) {
-            throwAlert(view);
-        }
-
-        this.currentPlayer = (this.currentPlayer)%2 + 1;
-        but.setEnabled(false);
-        ImageView underline1 = (ImageView)findViewById(R.id.underlinepl1);
-        ImageView underline2 = (ImageView)findViewById(R.id.underlinepl2);
-        if (underline1.getVisibility() == View.VISIBLE){
-            underline1.setVisibility(View.INVISIBLE);
-            underline2.setVisibility(View.VISIBLE);
-        }
-        else {
-            underline1.setVisibility(View.VISIBLE);
-            underline2.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    public void clickButton4(View view){
-        Button but = (Button)findViewById(R.id.button4);
-        if (this.currentPlayer == 1) {
-            but.setBackgroundResource(R.drawable.crossttt);
-        }
-        else {
-            but.setBackgroundResource(R.drawable.circlettt);
-        }
-
-        this.myGame.move(this.currentPlayer,1,0);
-
-        if(this.myGame.isFinished) {
-            throwAlert(view);
-        }
-
-        this.currentPlayer = (this.currentPlayer)%2 + 1;
-        but.setEnabled(false);
-        ImageView underline1 = (ImageView)findViewById(R.id.underlinepl1);
-        ImageView underline2 = (ImageView)findViewById(R.id.underlinepl2);
-        if (underline1.getVisibility() == View.VISIBLE){
-            underline1.setVisibility(View.INVISIBLE);
-            underline2.setVisibility(View.VISIBLE);
-        }
-        else {
-            underline1.setVisibility(View.VISIBLE);
-            underline2.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    public void clickButton5(View view){
-        Button but = (Button)findViewById(R.id.button5);
-        if (this.currentPlayer == 1) {
-            but.setBackgroundResource(R.drawable.crossttt);
-        }
-        else {
-            but.setBackgroundResource(R.drawable.circlettt);
-        }
-
-        this.myGame.move(this.currentPlayer,1,1);
-
-        if(this.myGame.isFinished) {
-            throwAlert(view);
-        }
-
-        this.currentPlayer = (this.currentPlayer)%2 + 1;
-        but.setEnabled(false);
-        ImageView underline1 = (ImageView)findViewById(R.id.underlinepl1);
-        ImageView underline2 = (ImageView)findViewById(R.id.underlinepl2);
-        if (underline1.getVisibility() == View.VISIBLE){
-            underline1.setVisibility(View.INVISIBLE);
-            underline2.setVisibility(View.VISIBLE);
-        }
-        else {
-            underline1.setVisibility(View.VISIBLE);
-            underline2.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    public void clickButton6(View view){
-        Button but = (Button)findViewById(R.id.button6);
-        if (this.currentPlayer == 1) {
-            but.setBackgroundResource(R.drawable.crossttt);
-        }
-        else {
-            but.setBackgroundResource(R.drawable.circlettt);
-        }
-
-        this.myGame.move(this.currentPlayer,1,2);
-
-        if(this.myGame.isFinished) {
-            throwAlert(view);
-        }
-
-        this.currentPlayer = (this.currentPlayer)%2 + 1;
-        but.setEnabled(false);
-        ImageView underline1 = (ImageView)findViewById(R.id.underlinepl1);
-        ImageView underline2 = (ImageView)findViewById(R.id.underlinepl2);
-        if (underline1.getVisibility() == View.VISIBLE){
-            underline1.setVisibility(View.INVISIBLE);
-            underline2.setVisibility(View.VISIBLE);
-        }
-        else {
-            underline1.setVisibility(View.VISIBLE);
-            underline2.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    public void clickButton7(View view){
-        Button but = (Button)findViewById(R.id.button7);
-        if (this.currentPlayer == 1) {
-            but.setBackgroundResource(R.drawable.crossttt);
-        }
-        else {
-            but.setBackgroundResource(R.drawable.circlettt);
-        }
-
-        this.myGame.move(this.currentPlayer,2,0);
-
-        if(this.myGame.isFinished) {
-            throwAlert(view);
-        }
-
-        this.currentPlayer = (this.currentPlayer)%2 + 1;
-        but.setEnabled(false);
-        ImageView underline1 = (ImageView)findViewById(R.id.underlinepl1);
-        ImageView underline2 = (ImageView)findViewById(R.id.underlinepl2);
-        if (underline1.getVisibility() == View.VISIBLE){
-            underline1.setVisibility(View.INVISIBLE);
-            underline2.setVisibility(View.VISIBLE);
-        }
-        else {
-            underline1.setVisibility(View.VISIBLE);
-            underline2.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    public void clickButton8(View view){
-        Button but = (Button)findViewById(R.id.button8);
-        if (this.currentPlayer == 1) {
-            but.setBackgroundResource(R.drawable.crossttt);
-        }
-        else {
-            but.setBackgroundResource(R.drawable.circlettt);
-        }
-
-        this.myGame.move(this.currentPlayer,2,1);
-
-        if(this.myGame.isFinished) {
-            throwAlert(view);
-        }
-
-        this.currentPlayer = (this.currentPlayer)%2 + 1;
-        but.setEnabled(false);
-        ImageView underline1 = (ImageView)findViewById(R.id.underlinepl1);
-        ImageView underline2 = (ImageView)findViewById(R.id.underlinepl2);
-        if (underline1.getVisibility() == View.VISIBLE){
-            underline1.setVisibility(View.INVISIBLE);
-            underline2.setVisibility(View.VISIBLE);
-        }
-        else {
-            underline1.setVisibility(View.VISIBLE);
-            underline2.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    public void clickButton9(View view){
-        Button but = (Button)findViewById(R.id.button9);
-        if (this.currentPlayer == 1) {
-            but.setBackgroundResource(R.drawable.crossttt);
-        }
-        else {
-            but.setBackgroundResource(R.drawable.circlettt);
-        }
-
-        this.myGame.move(this.currentPlayer,2,2);
-
-        if(this.myGame.isFinished) {
-            throwAlert(view);
-        }
-
-        this.currentPlayer = (this.currentPlayer)%2 + 1;
-        but.setEnabled(false);
-        ImageView underline1 = (ImageView)findViewById(R.id.underlinepl1);
-        ImageView underline2 = (ImageView)findViewById(R.id.underlinepl2);
-        if (underline1.getVisibility() == View.VISIBLE){
-            underline1.setVisibility(View.INVISIBLE);
-            underline2.setVisibility(View.VISIBLE);
-        }
-        else {
-            underline1.setVisibility(View.VISIBLE);
-            underline2.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    public void throwAlert(View view) {
+    public void throwAlert(int winner) {
         AlertDialog.Builder endGame = new AlertDialog.Builder(this);
-        int winner = this.myGame.getWinner();
         if (winner == 0) {
             endGame.setMessage("Nobody wins...");
         }
@@ -365,6 +104,96 @@ public class ActivityGameTicTacToe extends AppCompatActivity {
         dialog.show();
 
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.BLUE);
+
+
+    }
+
+
+
+
+    @Override
+    public void onClick(View v) {
+        final Button b = (Button) v;
+        if (this.currentPlayer == 1){
+            b.setBackgroundResource(R.drawable.crossttt);
+        }
+        else {
+            b.setBackgroundResource(R.drawable.circlettt);
+        }
+        int buttonNb = Arrays.asList(this.buttons).indexOf(v.getId());
+        int row = buttonNb/3;
+        int col = buttonNb%3;
+
+        this.myGame.move(this.currentPlayer,row,col);
+
+        if(this.myGame.isFinished) {
+            throwAlert(this.myGame.getWinner());
+        } else {
+            changePlayer();
+            b.setEnabled(false);
+
+            if (this.myGame.getNumberOfPlayers() == 1) {
+                disableButtons();
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        compMove();
+                    }
+                }, 700);
+            }
+        }
+    }
+
+    public void compMove(){
+        int[] choice = this.myGame.computerMove();
+        int index = choice[0] * 3 + choice[1];
+        int id = this.buttons[index];
+
+        Button compB = (Button) findViewById(id);
+        compB.setEnabled(false);
+        compB.setBackgroundResource(R.drawable.circlettt);
+
+        if(this.myGame.isFinished) {
+            throwAlert(this.myGame.getWinner());
+        }
+
+        changePlayer();
+        enableButtons();
+    }
+
+    public void changePlayer(){
+        ImageView underline1 = (ImageView)findViewById(R.id.underlinepl1);
+        ImageView underline2 = (ImageView)findViewById(R.id.underlinepl2);
+        if (currentPlayer == 1) {
+            underline1.setVisibility(View.INVISIBLE);
+            underline2.setVisibility(View.VISIBLE);
+        } else {
+            underline1.setVisibility(View.VISIBLE);
+            underline2.setVisibility(View.INVISIBLE);
+        }
+        this.currentPlayer = (this.currentPlayer)%2 + 1;
+    }
+
+    public void enableButtons(){
+        int[][] grid = this.myGame.grid;
+        for (int i:buttons){
+            Button but = (Button)findViewById(i);
+            int buttonNb = Arrays.asList(this.buttons).indexOf(i);
+            int row = buttonNb/3;
+            int col = buttonNb%3;
+            if (grid[row][col] == 0) {
+                but.setEnabled(true);
+            }
+        }
+    }
+
+    public void disableButtons(){
+        int[][] grid = this.myGame.grid;
+        for (int i:buttons){
+            Button but = (Button)findViewById(i);
+            but.setEnabled(false);
+        }
     }
 
     public void newGame(){
@@ -384,10 +213,15 @@ public class ActivityGameTicTacToe extends AppCompatActivity {
             score2.setText(value.toString());
         }
 
-        int strtr = this.myGame.starter;
+        int starter = this.myGame.starter;
+        int nb = this.myGame.getNumberOfPlayers();
+        int lvl = this.myGame.getComputerLevel();
+
         this.myGame = new TicTacToeGame();
-        this.myGame.starter = (strtr)%2 + 1;
-        this.myGame.setNextPlayer(this.myGame.starter);
+        this.myGame.setNumberOfPlayers(nb);
+        this.myGame.setComputerLevel(lvl);
+        this.myGame.starter = (starter)%2 + 1;
+        this.currentPlayer = this.myGame.starter;
 
         if (this.myGame.starter == 1) {
             ImageView underline1 = (ImageView)findViewById(R.id.underlinepl1);
@@ -402,42 +236,21 @@ public class ActivityGameTicTacToe extends AppCompatActivity {
             underline2.setVisibility(View.VISIBLE);
         }
 
-        Button but1 = (Button)findViewById(R.id.button1);
-        but1.setEnabled(true);
-        but1.setBackgroundResource(R.drawable.empty);
+        for (int i:buttons){
+            Button but = (Button)findViewById(i);
+            but.setEnabled(true);
+            but.setBackgroundResource(R.drawable.empty);
+        }
 
-        Button but2 = (Button)findViewById(R.id.button2);
-        but2.setEnabled(true);
-        but2.setBackgroundResource(R.drawable.empty);
-
-        Button but3 = (Button)findViewById(R.id.button3);
-        but3.setEnabled(true);
-        but3.setBackgroundResource(R.drawable.empty);
-
-        Button but4 = (Button)findViewById(R.id.button4);
-        but4.setEnabled(true);
-        but4.setBackgroundResource(R.drawable.empty);
-
-        Button but5 = (Button)findViewById(R.id.button5);
-        but5.setEnabled(true);
-        but5.setBackgroundResource(R.drawable.empty);
-
-        Button but6 = (Button)findViewById(R.id.button6);
-        but6.setEnabled(true);
-        but6.setBackgroundResource(R.drawable.empty);
-
-        Button but7 = (Button)findViewById(R.id.button7);
-        but7.setEnabled(true);
-        but7.setBackgroundResource(R.drawable.empty);
-
-        Button but8 = (Button)findViewById(R.id.button8);
-        but8.setEnabled(true);
-        but8.setBackgroundResource(R.drawable.empty);
-
-        Button but9 = (Button)findViewById(R.id.button9);
-        but9.setEnabled(true);
-        but9.setBackgroundResource(R.drawable.empty);
+        if (this.myGame.getNumberOfPlayers() == 1 && this.myGame.starter == 2){
+            disableButtons();
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    compMove();
+                }
+            }, 1000);
+        }
     }
-
-
 }
