@@ -13,9 +13,154 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="62dp"
         android:textSize="45dp"
         android:textColor="#FFFFFF"
         android:text="Four In A Row" />
+
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editText1"
+        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="27dp"
+        android:layout_toStartOf="@+id/editText1"
+        android:textColor="#038af3"
+        android:textSize="23dp"
+        android:text="Player 1" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView1"
+        android:layout_centerVertical="true"
+        android:textColor="#038af3"
+        android:textSize="23dp"
+        android:text="Player 2" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="34dp"
+        android:ems="10"
+        android:inputType="textCapWords"
+        android:hint="Name"
+        android:layout_above="@+id/editText2"
+        android:layout_alignParentEnd="true"
+        android:textSize="20dp"
+        android:textColor="#CCCCCC"
+        android:textColorHint="#CCCCCC"
+        android:backgroundTint="#CCCCCC"
+        android:layout_marginBottom="17dp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/editText1"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:inputType="textCapWords"
+        android:textSize="20dp"
+        android:text=""
+        android:textColor="#CCCCCC"
+        android:textColorHint="#CCCCCC"
+        android:backgroundTint="#CCCCCC"
+        android:hint="Name"/>
+
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:visibility="invisible"
+        android:layout_below="@+id/radioGrouppv"
+        android:layout_centerHorizontal="true">
+
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#FFFFFF"
+            android:checked="true"
+            android:onClick="onClick1"
+            android:text="Easy"
+            android:textColor="#FFFFFF" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:buttonTint="#FFFFFF"
+            android:onClick="onClick2"
+            android:text="Normal"
+            android:textColor="#FFFFFF" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:buttonTint="#FFFFFF"
+            android:onClick="onClick3"
+            android:text="Hard"
+            android:textColor="#FFFFFF" />
+
+    </RadioGroup>
+
+
+    <RadioGroup
+        android:id="@+id/radioGrouppv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/editText2">
+
+        <RadioButton
+            android:id="@+id/radioButtonpvp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:buttonTint="#FFFFFF"
+            android:checked="true"
+            android:onClick="onClickPVP"
+            android:text="Player VS Player" />
+
+        <RadioButton
+            android:id="@+id/radioButtonpvc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:textColor="#FFFFFF"
+            android:buttonTint="#FFFFFF"
+            android:onClick="onClickPVC"
+            android:text="Player VS Computer" />
+
+    </RadioGroup>
+
+
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:textColor="#038af3"
+        android:background="@null"
+        android:text="Start"
+        android:onClick="onClickStart"
+        android:layout_below="@+id/radioGroup1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp" />
 
 </RelativeLayout>

@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hugomartinet.boardgames.ActivityGameFourInARow"
+    android:background="@drawable/blackboard">
+
+    <TextView
+        android:id="@+id/titleFourInARowGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="62dp"
+        android:textSize="45dp"
+        android:textColor="#FFFFFF"
+        android:text="Four In A Row" />
+
+
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="343dp"
+        android:layout_height="341dp"
+        android:layout_centerHorizontal="true"
+        android:columnCount="7"
+        android:rowCount="7"
+        android:layout_below="@+id/titleFourInARowGame"
+        android:layout_marginTop="20dp">
+
+
+        <ImageView
+            android:id="@+id/ring00"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring01"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring02"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring03"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring04"
+            android:layout_column="0"
+            android:layout_row="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring05"
+            android:layout_column="0"
+            android:layout_row="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring06"
+            android:layout_column="0"
+            android:layout_row="6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring10"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring11"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring12"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring13"
+            android:layout_column="1"
+            android:layout_row="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring14"
+            android:layout_column="1"
+            android:layout_row="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring15"
+            android:layout_column="1"
+            android:layout_row="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring16"
+            android:layout_column="1"
+            android:layout_row="6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring20"
+            android:layout_column="2"
+            android:layout_row="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring21"
+            android:layout_column="2"
+            android:layout_row="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring22"
+            android:layout_column="2"
+            android:layout_row="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring23"
+            android:layout_column="2"
+            android:layout_row="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring24"
+            android:layout_column="2"
+            android:layout_row="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring25"
+            android:layout_column="2"
+            android:layout_row="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring26"
+            android:layout_column="2"
+            android:layout_row="6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring30"
+            android:layout_column="3"
+            android:layout_row="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring31"
+            android:layout_column="3"
+            android:layout_row="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring32"
+            android:layout_column="3"
+            android:layout_row="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring33"
+            android:layout_column="3"
+            android:layout_row="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring34"
+            android:layout_column="3"
+            android:layout_row="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring35"
+            android:layout_column="3"
+            android:layout_row="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring36"
+            android:layout_column="3"
+            android:layout_row="6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring40"
+            android:layout_column="4"
+            android:layout_row="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring41"
+            android:layout_column="4"
+            android:layout_row="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring42"
+            android:layout_column="4"
+            android:layout_row="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring43"
+            android:layout_column="4"
+            android:layout_row="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring44"
+            android:layout_column="4"
+            android:layout_row="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring45"
+            android:layout_column="4"
+            android:layout_row="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring46"
+            android:layout_column="4"
+            android:layout_row="6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring50"
+            android:layout_column="5"
+            android:layout_row="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring51"
+            android:layout_column="5"
+            android:layout_row="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring52"
+            android:layout_column="5"
+            android:layout_row="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring53"
+            android:layout_column="5"
+            android:layout_row="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring54"
+            android:layout_column="5"
+            android:layout_row="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring55"
+            android:layout_column="5"
+            android:layout_row="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring56"
+            android:layout_column="5"
+            android:layout_row="6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring60"
+            android:layout_column="6"
+            android:layout_row="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring61"
+            android:layout_column="6"
+            android:layout_row="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring62"
+            android:layout_column="6"
+            android:layout_row="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring63"
+            android:layout_column="6"
+            android:layout_row="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring64"
+            android:layout_column="6"
+            android:layout_row="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring65"
+            android:layout_column="6"
+            android:layout_row="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+        <ImageView
+            android:id="@+id/ring66"
+            android:layout_column="6"
+            android:layout_row="6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/emptyring" />
+
+
+    </GridLayout>
+
+
+    <Button
+        android:id="@+id/column1"
+        android:layout_width="49dp"
+        android:layout_height="341dp"
+        android:layout_alignTop="@id/gridLayout"
+        android:layout_alignStart="@id/gridLayout"
+        android:background="@drawable/empty"/>
+
+    <Button
+        android:id="@+id/column2"
+        android:layout_width="49dp"
+        android:layout_height="341dp"
+        android:layout_alignTop="@id/gridLayout"
+        android:layout_toRightOf="@id/column1"
+        android:background="@drawable/empty"/>
+
+    <Button
+        android:id="@+id/column3"
+        android:layout_width="49dp"
+        android:layout_height="341dp"
+        android:layout_alignTop="@id/gridLayout"
+        android:layout_toRightOf="@id/column2"
+        android:background="@drawable/empty"/>
+
+    <Button
+        android:id="@+id/column4"
+        android:layout_width="49dp"
+        android:layout_height="341dp"
+        android:layout_alignTop="@id/gridLayout"
+        android:layout_toRightOf="@id/column3"
+        android:background="@drawable/empty"/>
+
+    <Button
+        android:id="@+id/column5"
+        android:layout_width="49dp"
+        android:layout_height="341dp"
+        android:layout_alignTop="@id/gridLayout"
+        android:layout_toRightOf="@id/column4"
+        android:background="@drawable/empty"/>
+
+    <Button
+        android:id="@+id/column6"
+        android:layout_width="49dp"
+        android:layout_height="341dp"
+        android:layout_alignTop="@id/gridLayout"
+        android:layout_toRightOf="@id/column5"
+        android:background="@drawable/empty"/>
+
+    <Button
+        android:id="@+id/column7"
+        android:layout_width="49dp"
+        android:layout_height="341dp"
+        android:layout_alignTop="@id/gridLayout"
+        android:layout_toRightOf="@id/column6"
+        android:background="@drawable/empty"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/gridLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            app:srcCompat="@drawable/redring" />
+
+        <TextView
+            android:id="@+id/player1"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/score1"
+            android:textSize="20dp"
+            android:textColor="#FFFFFF"
+            android:gravity="right"
+            android:text="Player1" />
+
+
+        <TextView
+            android:id="@+id/score1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/tiret"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:textSize="40dp"
+            android:text="0"
+            android:textColor="#FFFFFF" />
+
+
+        <TextView
+            android:id="@+id/tiret"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="-"
+            android:textColor="#FFFFFF"
+            android:textSize="35dp" />
+
+        <TextView
+            android:id="@+id/score2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_toRightOf="@+id/tiret"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:textSize="40dp"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/player2"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/score2"
+            android:text="Player2"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/yellowring" />
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/underlinepl1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/underline"
+        android:layout_below="@+id/linearLayout"
+        android:layout_toStartOf="@+id/column4"
+        android:layout_marginEnd="22dp" />
+
+    <ImageView
+        android:id="@+id/underlinepl2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/underline"
+        android:visibility="invisible"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignEnd="@+id/gridLayout"
+        android:layout_marginEnd="21dp" />
+
+
+
+</RelativeLayout>
