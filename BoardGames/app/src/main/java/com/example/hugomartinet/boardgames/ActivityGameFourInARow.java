@@ -13,26 +13,31 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.Arrays;
-import java.util.logging.LogRecord;
 
-public class ActivityGameTicTacToe extends AppCompatActivity implements View.OnClickListener {
+public class ActivityGameFourInARow extends AppCompatActivity implements View.OnClickListener {
 
-    private int currentPlayer;
-    private TicTacToeGame myGame = new TicTacToeGame();
     private String name1;
     private String name2;
-    private Integer[] buttons = {R.id.button1,R.id.button2,R.id.button3,R.id.button4,R.id.button5,R.id.button6,R.id.button7,R.id.button8,R.id.button9};
+    private int currentPlayer;
+    private FourInARowGame myGame = new FourInARowGame();
+
+    private Integer[][] rings = {{R.id.ring00,R.id.ring01,R.id.ring02,R.id.ring03,R.id.ring04,R.id.ring05,R.id.ring06},
+            {R.id.ring10,R.id.ring11,R.id.ring12,R.id.ring13,R.id.ring14,R.id.ring15,R.id.ring16},
+            {R.id.ring20,R.id.ring21,R.id.ring22,R.id.ring23,R.id.ring24,R.id.ring25,R.id.ring26},
+            {R.id.ring30,R.id.ring31,R.id.ring32,R.id.ring33,R.id.ring34,R.id.ring35,R.id.ring36},
+            {R.id.ring40,R.id.ring41,R.id.ring42,R.id.ring43,R.id.ring44,R.id.ring45,R.id.ring46},
+            {R.id.ring50,R.id.ring51,R.id.ring52,R.id.ring53,R.id.ring54,R.id.ring55,R.id.ring56},
+            {R.id.ring60,R.id.ring61,R.id.ring62,R.id.ring63,R.id.ring64,R.id.ring65,R.id.ring66}};
+
+    private Integer[] buttons = {R.id.column1,R.id.column2,R.id.column3,R.id.column4,R.id.column5,R.id.column6,R.id.column7};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_tic_tac_toe);
+        setContentView(R.layout.activity_game_four_in_arow);
 
-        TextView tx = (TextView) findViewById(R.id.titleTicTacToeGame);
+        TextView tx = (TextView)findViewById(R.id.titleFourInARowGame);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/introinline.otf");
         tx.setTypeface(custom_font);
 
@@ -50,6 +55,13 @@ public class ActivityGameTicTacToe extends AppCompatActivity implements View.OnC
         int nbOfPlayers = (int) b.get("numberOfPlayers");
         int computerLvl = (int) b.get("computerLvl");
 
+        this.myGame.setNumberOfPlayers(nbOfPlayers);
+        this.myGame.setComputerLevel(computerLvl);
+        this.myGame.setStarter(1);
+
+
+        this.currentPlayer = 1;
+
 
         if (this.name1.equals("")) {
             this.name1 = "Player 1";
@@ -64,20 +76,51 @@ public class ActivityGameTicTacToe extends AppCompatActivity implements View.OnC
         TextView n2 = (TextView)findViewById(R.id.player2);
         n2.setText(this.name2);
 
-        this.myGame.setNumberOfPlayers(nbOfPlayers);
-        this.myGame.setComputerLevel(computerLvl);
-        this.myGame.starter = 1;
-
-        this.currentPlayer = 1;
-
-
-        for(int i: buttons){
+        for(int i:buttons){
             Button but = (Button)findViewById(i);
             but.setOnClickListener(this);
         }
     }
 
-    public void throwAlert(int winner) {
+    @Override
+    public void onClick(View v) {
+        int column = Arrays.asList(this.buttons).indexOf(v.getId());
+        this.myGame.move(currentPlayer,column);
+        int row = this.myGame.getLastRow(column);
+        int chipID = this.rings[column][row];
+        ImageView chip = (ImageView)findViewById(chipID);
+
+        if (currentPlayer == 1){
+            chip.setBackgroundResource(R.drawable.redring);
+        } else {
+            chip.setBackgroundResource(R.drawable.yellowring);
+        }
+
+
+        if(this.myGame.gameFinished()) {
+            throwAlert(this.myGame.getWinner());
+        } else {
+            changePlayer();
+            if(this.myGame.columnFilled(this.myGame.getGrid(), column)) {
+                ((Button) v).setEnabled(false);
+            }
+
+            if (this.myGame.getNumberOfPlayers() == 1) {
+                disableButtons();
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        compMove();
+                    }
+                }, 700);
+            }
+        }
+
+
+    }
+
+    private void throwAlert(int winner) {
         AlertDialog.Builder endGame = new AlertDialog.Builder(this);
         if (winner == 0) {
             endGame.setMessage("Nobody wins...");
@@ -98,7 +141,7 @@ public class ActivityGameTicTacToe extends AppCompatActivity implements View.OnC
                 .setNeutralButton("Go Back", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(ActivityGameTicTacToe.this, MainActivity.class));
+                        startActivity(new Intent(ActivityGameFourInARow.this, MainActivity.class));
                     }
                 })
                 .setTitle("Game Over");
@@ -107,65 +150,9 @@ public class ActivityGameTicTacToe extends AppCompatActivity implements View.OnC
         dialog.show();
 
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.BLUE);
-
-
     }
 
-
-
-
-    @Override
-    public void onClick(View v) {
-        final Button b = (Button) v;
-        if (this.currentPlayer == 1){
-            b.setBackgroundResource(R.drawable.crossttt);
-        }
-        else {
-            b.setBackgroundResource(R.drawable.circlettt);
-        }
-        int buttonNb = Arrays.asList(this.buttons).indexOf(v.getId());
-        int row = buttonNb/3;
-        int col = buttonNb%3;
-
-        this.myGame.move(this.currentPlayer,row,col);
-
-        if(this.myGame.isFinished) {
-            throwAlert(this.myGame.getWinner());
-        } else {
-            changePlayer();
-            b.setEnabled(false);
-
-            if (this.myGame.getNumberOfPlayers() == 1) {
-                disableButtons();
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        compMove();
-                    }
-                }, 700);
-            }
-        }
-    }
-
-    public void compMove(){
-        int[] choice = this.myGame.computerMove();
-        int index = choice[0] * 3 + choice[1];
-        int id = this.buttons[index];
-
-        Button compB = (Button) findViewById(id);
-        compB.setEnabled(false);
-        compB.setBackgroundResource(R.drawable.circlettt);
-
-        if(this.myGame.isFinished) {
-            throwAlert(this.myGame.getWinner());
-        }
-
-        changePlayer();
-        enableButtons();
-    }
-
-    public void changePlayer(){
+    private void changePlayer() {
         ImageView underline1 = (ImageView)findViewById(R.id.underlinepl1);
         ImageView underline2 = (ImageView)findViewById(R.id.underlinepl2);
         if (currentPlayer == 1) {
@@ -178,25 +165,6 @@ public class ActivityGameTicTacToe extends AppCompatActivity implements View.OnC
         this.currentPlayer = (this.currentPlayer)%2 + 1;
     }
 
-    public void enableButtons(){
-        int[][] grid = this.myGame.grid;
-        for (int i:buttons){
-            Button but = (Button)findViewById(i);
-            int buttonNb = Arrays.asList(this.buttons).indexOf(i);
-            int row = buttonNb/3;
-            int col = buttonNb%3;
-            if (grid[row][col] == 0) {
-                but.setEnabled(true);
-            }
-        }
-    }
-
-    public void disableButtons(){
-        for (int i:buttons){
-            Button but = (Button)findViewById(i);
-            but.setEnabled(false);
-        }
-    }
 
     public void newGame(){
         int winner = this.myGame.getWinner();
@@ -215,17 +183,17 @@ public class ActivityGameTicTacToe extends AppCompatActivity implements View.OnC
             score2.setText(value.toString());
         }
 
-        int starter = this.myGame.starter;
+        int starter = this.myGame.getStarter();
         int nb = this.myGame.getNumberOfPlayers();
         int lvl = this.myGame.getComputerLevel();
 
-        this.myGame = new TicTacToeGame();
+        this.myGame = new FourInARowGame();
         this.myGame.setNumberOfPlayers(nb);
         this.myGame.setComputerLevel(lvl);
-        this.myGame.starter = (starter)%2 + 1;
-        this.currentPlayer = this.myGame.starter;
+        this.myGame.setStarter((starter)%2 + 1);
+        this.currentPlayer = this.myGame.getStarter();
 
-        if (this.myGame.starter == 1) {
+        if (this.myGame.getStarter() == 1) {
             ImageView underline1 = (ImageView)findViewById(R.id.underlinepl1);
             ImageView underline2 = (ImageView)findViewById(R.id.underlinepl2);
             underline1.setVisibility(View.VISIBLE);
@@ -238,13 +206,14 @@ public class ActivityGameTicTacToe extends AppCompatActivity implements View.OnC
             underline2.setVisibility(View.VISIBLE);
         }
 
-        for (int i:buttons){
-            Button but = (Button)findViewById(i);
-            but.setEnabled(true);
-            but.setBackgroundResource(R.drawable.empty);
+        for (Integer[] idcol: rings){
+            for( Integer id : idcol){
+                ImageView chip = (ImageView)findViewById(id);
+                chip.setBackgroundResource(R.drawable.emptyring);
+            }
         }
 
-        if (this.myGame.getNumberOfPlayers() == 1 && this.myGame.starter == 2){
+        if (this.myGame.getNumberOfPlayers() == 1 && this.myGame.getStarter() == 2){
             disableButtons();
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -253,6 +222,37 @@ public class ActivityGameTicTacToe extends AppCompatActivity implements View.OnC
                     compMove();
                 }
             }, 1000);
+        }
+    }
+
+    private void compMove() {
+        int choice = this.myGame.computerMove();
+        int row = this.myGame.getLastRow(choice);
+        int chipID = this.rings[choice][row];
+        ImageView chip = (ImageView)findViewById(chipID);
+        chip.setBackgroundResource(R.drawable.yellowring);
+        if(this.myGame.gameFinished()) {
+            throwAlert(this.myGame.getWinner());
+        }
+
+        changePlayer();
+        enableButtons();
+    }
+
+    private void enableButtons(){
+        for (int id: buttons){
+            Button b = (Button)findViewById(id);
+            int col = Arrays.asList(buttons).indexOf(id);
+            if (!this.myGame.columnFilled(this.myGame.getGrid(), col)){
+                b.setEnabled(true);
+            }
+        }
+    }
+
+    private void disableButtons() {
+        for (int i:buttons){
+            Button but = (Button)findViewById(i);
+            but.setEnabled(false);
         }
     }
 }
