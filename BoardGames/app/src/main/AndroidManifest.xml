@@ -18,11 +18,10 @@
         </activity>
         <activity android:name=".ActivityTicTacToe" />
         <activity android:name=".ActivityFourInARow" />
-        <activity android:name=".ActivityChess" />
         <activity android:name=".ActivityDots" />
-        <activity android:name=".ActivityCheckers" />
         <activity android:name=".ActivityGameTicTacToe" />
-        <activity android:name=".ActivityGameFourInARow"></activity>
+        <activity android:name=".ActivityGameFourInARow" />
+        <activity android:name=".ActivityGameDots"></activity>
     </application>
 
 </manifest>

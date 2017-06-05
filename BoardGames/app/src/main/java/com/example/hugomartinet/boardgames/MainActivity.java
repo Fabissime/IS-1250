@@ -35,27 +35,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btn3 = (Button)findViewById(R.id.button3);
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ActivityChess.class));
-            }
-        });
 
         Button btn4 = (Button)findViewById(R.id.button4);
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ActivityDots.class));
-            }
-        });
-
-        Button btn5 = (Button)findViewById(R.id.button5);
-        btn5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ActivityCheckers.class));
             }
         });
     }
