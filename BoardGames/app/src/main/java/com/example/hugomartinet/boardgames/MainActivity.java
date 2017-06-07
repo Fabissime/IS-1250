@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,13 +36,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        Button btn4 = (Button)findViewById(R.id.button4);
-        btn4.setOnClickListener(new View.OnClickListener() {
+        Button btn3 = (Button)findViewById(R.id.button3);
+        btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ActivityDots.class));
             }
         });
+
     }
 }
